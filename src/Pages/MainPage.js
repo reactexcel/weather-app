@@ -9,7 +9,8 @@ function MainPage() {
   const options = useMemo(() => countryList().getData(), []);
   const [changevalue, setChangedValue] = useState("");
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     if (changevalue.value && zipCode) {
       callapi(zipCode, changevalue.value);
     } else {
@@ -45,30 +46,32 @@ function MainPage() {
             Enter Norwegian zipcode below to get the <br /> current weather
             conditions for that area
           </div>
-          <div className="flex my-10 items-center gap-x-1 w-full justify-center">
-            <Select
-              options={options}
-              onChange={changeHandler}
-              className="text-gray-500 w-[423px] text-left"
-              placeholder="Select  Country"
-              value={changevalue}
-            />
-          </div>
-          <div className="flex my-10 items-center gap-x-1 w-full justify-center">
-            <input
-              type="text"
-              placeholder="Enter Zipcode..."
-              className="px-4 py-1 focus:outline-none w-[330px] text-gray-500"
-              onChange={(e) => handleChangeZipCode(e.target.value)}
-              value={zipCode}
-            />
-            <button
-              className="bg-[#db5933] px-6 py-[4.4px] shadow-black shadow-sm"
-              onClick={handleClick}
-            >
-              Enter
-            </button>
-          </div>
+          <form onSubmit={handleClick}>
+            <div className="flex my-10 items-center gap-x-1 w-full justify-center">
+              <Select
+                options={options}
+                onChange={changeHandler}
+                className="text-gray-500 w-[423px] text-left"
+                placeholder="Select  Country"
+                value={changevalue}
+              />
+            </div>
+            <div className="flex my-10 items-center gap-x-1 w-full justify-center">
+              <input
+                type="text"
+                placeholder="Enter Zipcode..."
+                className="px-4 py-1 focus:outline-none w-[330px] text-gray-500"
+                onChange={(e) => handleChangeZipCode(e.target.value)}
+                value={zipCode}
+              />
+              <button
+                type="submit"
+                className="bg-[#db5933] px-6 py-[4.4px] shadow-black shadow-sm"
+              >
+                Enter
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </>
