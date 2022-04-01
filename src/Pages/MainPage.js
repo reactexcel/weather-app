@@ -58,7 +58,8 @@ function MainPage() {
             </div>
             <div className="flex my-10 items-center gap-x-1 w-full justify-center">
               <input
-                type="text"
+                type="number"
+                inputmode="numeric"
                 placeholder="Enter Zipcode..."
                 className="px-4 py-1 focus:outline-none w-[330px] text-gray-500"
                 onChange={(e) => handleChangeZipCode(e.target.value)}

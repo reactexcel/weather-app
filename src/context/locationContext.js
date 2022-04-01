@@ -12,7 +12,6 @@ const LocationProvider = ({ children }) => {
     postalcode: "",
   });
   let navigate = useNavigate();
-  //{value: 'AF', label: 'Afghanistan'}
   const getGeoInfo = () => {
     axios
       .get("https://ipapi.co/json/")
@@ -20,7 +19,6 @@ const LocationProvider = ({ children }) => {
         let data = response.data;
         setGeoData({
           ...geoData,
-
           countryData: { value: data.country, label: data.country_name },
           postalcode: data.postal,
         });
@@ -36,7 +34,7 @@ const LocationProvider = ({ children }) => {
   const callapi = async (zipcode, countrycode) => {
     try {
       const response = await axios.post(
-        "http://176.9.137.77:3007/weather/search?",
+        "https://weather-web1.herokuapp.com/weather/search",
         {
           zipCode: zipcode,
           countryCode: countrycode,
