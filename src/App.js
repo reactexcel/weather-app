@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Mainpage from "./Pages/MainPage";
+import Forecast from "./Pages/forecast";
+import ErrorPg from "./Pages/errorpg";
+import { Routes, Route } from "react-router-dom";
+import PrivateRoute from "./Pages/PrivateRoute";
+import { NotFound } from "./Pages/notFound";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Mainpage />} />
+      <Route
+        path="forecast"
+        element={
+          <PrivateRoute>
+            <Forecast />
+          </PrivateRoute>
+        }
+      />
+      <Route path="*" element={<NotFound />} />
+      <Route
+        path="errorpg"
+        element={
+          <PrivateRoute>
+            {" "}
+            <ErrorPg />
+          </PrivateRoute>
+        }
+      />
+    </Routes>
   );
 }
 
